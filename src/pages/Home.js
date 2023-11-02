@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [roomId, setRoomID] = useState("");
   const [userName, setUserName] = useState("");
 
@@ -13,6 +15,25 @@ const Home = () => {
     setRoomID(id);
 
     toast.success("Created a new room");
+  };
+
+  const joinRoom = (e) => {
+    if (!roomId || !userName) {
+      toast.error("Room id and username is not valid");
+      return;
+    }
+
+    navigate(`/editor/${roomId}`, {
+      state: {
+        userName,
+      },
+    });
+  };
+
+  const handleKeyUp = (e) => {
+    if (e.code === "Enter") {
+      joinRoom();
+    }
   };
 
   return (
@@ -27,6 +48,7 @@ const Home = () => {
             placeholder="ROOM ID"
             onChange={(e) => setRoomID(e.target.value)}
             value={roomId}
+            onKeyUp={handleKeyUp}
           ></input>
           <input
             className="inputBox"
@@ -34,8 +56,11 @@ const Home = () => {
             placeholder="USERNAME"
             onChange={(e) => setUserName(e.target.value)}
             value={userName}
+            onKeyUp={handleKeyUp}
           ></input>
-          <button className="btn joinBtn">Join</button>
+          <button className="btn joinBtn" onClick={joinRoom}>
+            Join
+          </button>
           <span className="createInfo">
             If you don't have an invite then &nbsp;
             <a onClick={createNewRoom} href="/" className="newRoom">
