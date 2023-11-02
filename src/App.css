@@ -89,3 +89,56 @@ footer a:hover {
   color: #2b824c;
   border-color: #2b824c;
 }
+
+.MainWrapper {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  height: 100vh;
+}
+
+.aside {
+  background: #1c1e29;
+  padding: 16px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.asideInner {
+  flex: 1;
+}
+
+.clientsList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.client {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.userName {
+  margin-top: 10px;
+}
+
+.logoImg {
+  border-bottom: 1px solid #424242;
+  padding-bottom: 10px;
+  height: 60px;
+}
+
+.leaveBtn {
+  margin-top: 20px;
+  background: #4aed88;
+  width: 100%;
+  margin-left: auto;
+}
+
+.leaveBtn:hover {
+  background: #2b824c;
+}
